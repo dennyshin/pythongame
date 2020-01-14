@@ -1,6 +1,6 @@
-# Invent Your Own Computer Games with Python, 4th Edition
+# Making some games
 
-Following this book.
+Following this book: Invent Your Own Computer Games with Python, 4th Edition
 
-Use "inventgamepy" conda env. (found here: C:\Anaconda3\envs\inventgamepy)
+Use "pythongame" conda env. (found here: C:\Anaconda3\envs\pythongame)
 
