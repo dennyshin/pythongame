@@ -1,4 +1,4 @@
-# Making some games
+# making some games
 
 Following this book: Invent Your Own Computer Games with Python, 4th Edition
 
