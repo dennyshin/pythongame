@@ -46,13 +46,20 @@ def getComputerMove(validmoves):
 	return random.choice(validmoves)
 
 # brute force. not scalable
-def checkWin(b, turn):
-	# draw
+# need player's letter as empty squares are also ==
+def checkWin(b, l):
 	# TODO: draws can be seen earlier
 	if getValidMoves(b) == []:
 		return 'DRAW'
-
-
+	elif ((b[1] == b[2] == b[3] == l) or # row wins
+	     (b[4] == b[5] == b[6] == l) or
+	     (b[7] == b[8] == b[9] == l) or
+	     (b[1] == b[4] == b[7] == l) or # col wins
+	     (b[2] == b[5] == b[8] == l) or
+	     (b[3] == b[6] == b[9] == l) or
+	     (b[1] == b[5] == b[9] == l) or # diag wins
+	     (b[7] == b[5] == b[3] == l)):
+		return l
 
 # start game
 print('TIC-TAC-TOE\n')
@@ -63,20 +70,34 @@ turn = player1
 
 board = [' ']*10
 drawBoard(board)
+print()
 
 # turns
 # start loop here
-for i in range(3):
+while True:
 	print(turn + "'s turn.")
 	if turn == 'player':
 		playermove = getPlayerMove(getValidMoves(board))
 		board[playermove] = playerletter
+		isWin = checkWin(board, playerletter)
 		turn = 'computer'
 	else:
 		print('computer is thinking...')
 		time.sleep(2)
 		computermove = getComputerMove(getValidMoves(board))
 		board[computermove] = computerletter
+		isWin = checkWin(board, computerletter)
 		turn = 'player'
 
 	drawBoard(board)
+	print()
+
+	if isWin == playerletter:
+		print('YOU WIN')
+		break
+	elif isWin == computerletter:
+		print('YOU LOSE')
+		break
+	elif isWin == 'DRAW':
+		print('DRAW')
+		break
